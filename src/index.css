@@ -214,6 +214,10 @@ body {
   background-color: red;
   color: #fff;
   cursor: pointer;
+  margin-right: 1rem;
+}
+#editButton{
+    background-color: rgb(155, 98, 98);
 }
 
 .statusMsg {

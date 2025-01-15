@@ -6,6 +6,7 @@ import NewPost from './NewPost';
 import PostPage from './PostPage';
 import About from './About';
 import Missing from './Missing';
+import EditPost from './EditPost';
 import { Outlet, Route,  Routes,useNavigate} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {format} from 'date-fns';
@@ -68,11 +69,12 @@ const handleEdit = async(id)=>{
     setPosts(posts.map(post => post.id === id ? {...response.data}: post));
     setEditTitle('');
     setEditBody('');
+    console.log(editTitle+ editBody);
     navigate('/');
 
   }
   catch(err){
-    console.log(err.message);
+    console.log(err);
   }
 
 }
@@ -123,8 +125,18 @@ const handleSubmit = async(e)=>{
                   postBody= {postBody}
                   setPostBody = {setPostBody}
                   />}/>
-                  <Route path=":id" element={<PostPage posts={posts} handleDelete={handleDelete} />} />
+                  <Route path=":id" element={<PostPage posts={posts} handleDelete={handleDelete} handleEdit= {handleEdit} />} />
                 </Route>
+                
+                <Route path="edit/:id" element ={<EditPost
+                posts = {posts}
+                handleEdit= {handleEdit}
+                editBody= {editBody}
+                setEditBody ={ setEditBody}
+                editTitle ={editTitle}
+                setEditTitle={setEditTitle}
+
+                />}/>
                 <Route path="about" element={<About />} />
                 <Route path="*" element={<Missing />} />
             </Route>
