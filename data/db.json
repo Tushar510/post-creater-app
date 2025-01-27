@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "New Title ",
+      "datetime": "January 15 , 2025 12:17:35 AM",
+      "body": "This is a new post about the increment i got recently\n\n\n"
+    },
+    {
+      "id": "2",
+      "title": "New Title",
+      "datetime": "January 15 , 2025 12:17:26 AM",
+      "body": "Let's start doing gym this year. Let's begin"
+    },
+    {
+      "id": "3",
+      "title": "Test Post 1",
+      "datetime": "January 15 , 2025 12:17:57 AM",
+      "body": "This is a test post."
+    }
+  ]
+}

@@ -11,11 +11,14 @@ import { Outlet, Route,  Routes,useNavigate} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {format} from 'date-fns';
 import api from './api/posts';
+import useWindowSize from '../hooks/useWindowSize';
+import useAxiosFetch from '../hooks/useAxiosFetch';
 
-function Layout({search,setSearch}) {
+
+function Layout({search,setSearch,width}) {
   return (
       <>
-          <Header title = "React JS blog" />
+          <Header title = "React JS blog" width={width}/>
           <Nav search= {search} setSearch={setSearch} />
           <Outlet /> {/* Renders child routes */}
           <Footer />
@@ -32,6 +35,9 @@ const [postBody, setPostBody] = useState('');
 const [editTitle,setEditTitle] = useState('');
 const [editBody, setEditBody] = useState('');
 const navigate = useNavigate();
+const {width} = useWindowSize();
+
+const {data,fetchError,isLoading} = useAxiosFetch('http://localhost:3500/posts');
 
 useEffect(()=>{
 const fetchPosts = async()=>{
@@ -115,7 +121,7 @@ const handleSubmit = async(e)=>{
       <div className="App">
 
         <Routes>
-            <Route path="/" element={<Layout  search={search} setSearch = {setSearch}/>}>
+            <Route path="/" element={<Layout  search={search} setSearch = {setSearch} width= {width}/>}>
                 <Route index element={<Home posts={searchResults} />} /> {/* Default route */}
                 <Route path="post">
                   <Route index element={<NewPost
